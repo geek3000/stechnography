@@ -1,5 +1,6 @@
 import sys
 from PIL import Image
+from termcolor import colored
 
 def hide_text(img_file, msg):
     img = Image.open(img_file)
@@ -45,12 +46,12 @@ def clear_text(img_file):
 
 if(len(sys.argv) == 3):
     if(sys.argv[1] == "-e"):
-        text=input("Enter text to hide in "+sys.argv[2]+ " :> ")
+        text=input(colored("Enter text to hide in ", "blue")+colored(sys.argv[2], "yellow")+ " :> ")
         hide_text(sys.argv[2], text)
-        print("The image saved in encoded_img.png")
+        print(colored("The image saved in ", "blue")+colored("encoded.png", "yellow"))
     elif(sys.argv[1] == "-d"):
         text=clear_text(sys.argv[2])
-        print("Text found in ", sys.argv[2])
-        print(text)
+        print(colored("Text found in ", "blue"), colored(sys.argv[2], "yellow"))
+        print(colored(text, "green"))
 else:
-    print("python stechnography.py -e 'images.png'\npython stechnography.py -d 'images.png'")
+    print(colored("python stechnography.py -e 'images.png'\npython stechnography.py -d 'images.png'", "blue"))
